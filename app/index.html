@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#05080f">
+<title>Birds Eye — HUD prototype</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">BIRDS<span>EYE</span></div>
+    <div class="mode-switch" role="tablist">
+      <button id="modeSim" class="mode-btn active">SIMULATE</button>
+      <button id="modeLive" class="mode-btn">LIVE GPS</button>
+    </div>
+  </header>
+
+  <!-- Compass strip HUD -->
+  <section class="hud">
+    <div class="look-row">
+      <button class="look-btn" data-look="-90">◀ LEFT WINDOW</button>
+      <button class="look-btn active" data-look="0">▲ AHEAD</button>
+      <button class="look-btn" data-look="90">RIGHT WINDOW ▶</button>
+    </div>
+    <div id="strip" class="strip">
+      <div id="tape" class="tape"></div>
+      <div class="center-mark"></div>
+      <div id="chips" class="chips"></div>
+      <div id="stripEmpty" class="strip-empty hidden">no landmarks in view — widen visibility or fly on ✈</div>
+    </div>
+    <div class="readouts">
+      <div class="ro"><label>ALT</label><b id="roAlt">—</b></div>
+      <div class="ro"><label>GS</label><b id="roSpd">—</b></div>
+      <div class="ro"><label>TRK</label><b id="roHdg">—</b></div>
+      <div class="ro"><label>HORIZON</label><b id="roHor">—</b></div>
+      <div class="ro pos"><label>POS</label><b id="roPos">—</b></div>
+    </div>
+  </section>
+
+  <!-- Sim controls -->
+  <section id="simPanel" class="panel">
+    <div class="ctl-row">
+      <select id="routeSel" class="sel"></select>
+      <button id="playBtn" class="btn primary">▶ FLY</button>
+      <div class="speed-group" id="speedGroup">
+        <button data-mult="1" class="spd">1×</button>
+        <button data-mult="60" class="spd active">60×</button>
+        <button data-mult="600" class="spd">600×</button>
+      </div>
+    </div>
+    <input id="scrub" class="scrub" type="range" min="0" max="1000" value="0">
+    <div class="ctl-row dim-row"><span id="progLabel">ready for pushback</span></div>
+  </section>
+
+  <!-- Live GPS controls -->
+  <section id="livePanel" class="panel hidden">
+    <div class="ctl-row">
+      <button id="gpsBtn" class="btn primary">◉ START GPS</button>
+      <label class="inline-label">discovery radius
+        <select id="radiusSel" class="sel">
+          <option value="50">50 km</option>
+          <option value="100" selected>100 km</option>
+          <option value="200">200 km</option>
+          <option value="400">400 km</option>
+        </select>
+      </label>
+    </div>
+    <div class="ctl-row dim-row"><span id="gpsStatus">Drive mode: uses your real position + course. Best on a phone, riding shotgun.</span></div>
+  </section>
+
+  <!-- Coming up feed -->
+  <section class="feed">
+    <h2>COMING UP</h2>
+    <ol id="feedList"></ol>
+    <div id="feedEmpty" class="feed-empty">Pick a route and hit FLY — or switch to LIVE GPS in a car.</div>
+  </section>
+
+  <footer class="foot">v0 “compass strip” prototype · no camera, no map tiles — just position + bearing + a landmark DB · see docs/SPEC.md</footer>
+
+<script src="landmarks.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
