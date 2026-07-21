@@ -6,196 +6,296 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		0046D02AD349D98340A3665F /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55EF1D8A6DEFCEC88FB7DDDC /* Models.swift */; };
+		04CA66E2C7B1EED7354C0103 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B32A6347F39FB82B39548A /* Theme.swift */; };
+		259B8EA4EBC7E0934ED3D93F /* Geo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B71200B770F62320DC2F10B /* Geo.swift */; };
+		3AE7F32003075205EDD07B15 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F8137AEFBF1537B583597C3E /* Assets.xcassets */; };
+		3E1CBBB108FCAF54D03863CC /* HUDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13286E158ADCED67591AD62 /* HUDView.swift */; };
+		414640BE32B3E95961B120BD /* FlightEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98780FBA530722FF12E50291 /* FlightEngine.swift */; };
+		50737B040F1ABCFA3DC853C1 /* ScreenshotCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93257D27A2BD565360EEC27 /* ScreenshotCapture.swift */; };
+		81CB8F00BBB27F2C69D88383 /* LandmarkDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE5872262BCB5DCCE727AB9 /* LandmarkDB.swift */; };
+		93D60E8A83E58C9E2B16415C /* DialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B0D6F361C30EDCB04DF066 /* DialView.swift */; };
+		A4137EC454E2FF2860151FF9 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0873BF7B6CB3E1675BD40717 /* LocationService.swift */; };
+		A6646F0B0FF215712B3499B8 /* FlightLookup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8B462FF5E8B44BEA89ED5D /* FlightLookup.swift */; };
+		D8A6F3953F37F250BE27FF13 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D77F3016C72AAF71B3BBDA /* OnboardingView.swift */; };
+		DC6C996B360766326104A509 /* BirdsEyeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9FE737335B9E505BC03E24 /* BirdsEyeApp.swift */; };
+		E38E4D4A5C3440947913B328 /* OnboardingFlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E56D0EC8BBD73EF46EE439 /* OnboardingFlowTests.swift */; };
+		F6BFA8EB134E9C95E78107CD /* RoutePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5F5E201F00BE0F490CD4D2 /* RoutePicker.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		32DAC26CA59E949EC86F4571 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D1C2901961ED24D7B906ACDB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C745ED56E8884F56E2A303B2;
+			remoteInfo = BirdsEye;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
-		BE00000000000000000000A1 /* BirdsEye.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BirdsEye.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0873BF7B6CB3E1675BD40717 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
+		1B71200B770F62320DC2F10B /* Geo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geo.swift; sourceTree = "<group>"; };
+		2DE5872262BCB5DCCE727AB9 /* LandmarkDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkDB.swift; sourceTree = "<group>"; };
+		55EF1D8A6DEFCEC88FB7DDDC /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		561152C9E9E0A51531B8BA27 /* BirdsEye.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = BirdsEye.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5D9FE737335B9E505BC03E24 /* BirdsEyeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirdsEyeApp.swift; sourceTree = "<group>"; };
+		75B0D6F361C30EDCB04DF066 /* DialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialView.swift; sourceTree = "<group>"; };
+		78B3814EFA6E451802147F0C /* BirdsEyeUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = BirdsEyeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E8B462FF5E8B44BEA89ED5D /* FlightLookup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightLookup.swift; sourceTree = "<group>"; };
+		93B32A6347F39FB82B39548A /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		98780FBA530722FF12E50291 /* FlightEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightEngine.swift; sourceTree = "<group>"; };
+		BA5F5E201F00BE0F490CD4D2 /* RoutePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutePicker.swift; sourceTree = "<group>"; };
+		C0E56D0EC8BBD73EF46EE439 /* OnboardingFlowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingFlowTests.swift; sourceTree = "<group>"; };
+		C13286E158ADCED67591AD62 /* HUDView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUDView.swift; sourceTree = "<group>"; };
+		E3D77F3016C72AAF71B3BBDA /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		F8137AEFBF1537B583597C3E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F93257D27A2BD565360EEC27 /* ScreenshotCapture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotCapture.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		BE00000000000000000000B1 /* BirdsEye */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = BirdsEye;
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
-
-/* Begin PBXFrameworksBuildPhase section */
-		BE00000000000000000000C1 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXFrameworksBuildPhase section */
-
 /* Begin PBXGroup section */
-		BE00000000000000000000D1 = {
+		57E66846949A1EDE8E06F917 = {
 			isa = PBXGroup;
 			children = (
-				BE00000000000000000000B1 /* BirdsEye */,
-				BE00000000000000000000D2 /* Products */,
+				FA8C3B15AD51FC2CF6D46339 /* BirdsEye */,
+				C5FAB342D1642610CBC970FD /* BirdsEyeUITests */,
+				B7A62F0C5AD682F027D15C97 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		BE00000000000000000000D2 /* Products */ = {
+		B7A62F0C5AD682F027D15C97 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				BE00000000000000000000A1 /* BirdsEye.app */,
+				561152C9E9E0A51531B8BA27 /* BirdsEye.app */,
+				78B3814EFA6E451802147F0C /* BirdsEyeUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		C5FAB342D1642610CBC970FD /* BirdsEyeUITests */ = {
+			isa = PBXGroup;
+			children = (
+				C0E56D0EC8BBD73EF46EE439 /* OnboardingFlowTests.swift */,
+				F93257D27A2BD565360EEC27 /* ScreenshotCapture.swift */,
+			);
+			path = BirdsEyeUITests;
+			sourceTree = "<group>";
+		};
+		FA8C3B15AD51FC2CF6D46339 /* BirdsEye */ = {
+			isa = PBXGroup;
+			children = (
+				F8137AEFBF1537B583597C3E /* Assets.xcassets */,
+				5D9FE737335B9E505BC03E24 /* BirdsEyeApp.swift */,
+				75B0D6F361C30EDCB04DF066 /* DialView.swift */,
+				98780FBA530722FF12E50291 /* FlightEngine.swift */,
+				7E8B462FF5E8B44BEA89ED5D /* FlightLookup.swift */,
+				1B71200B770F62320DC2F10B /* Geo.swift */,
+				C13286E158ADCED67591AD62 /* HUDView.swift */,
+				2DE5872262BCB5DCCE727AB9 /* LandmarkDB.swift */,
+				0873BF7B6CB3E1675BD40717 /* LocationService.swift */,
+				55EF1D8A6DEFCEC88FB7DDDC /* Models.swift */,
+				E3D77F3016C72AAF71B3BBDA /* OnboardingView.swift */,
+				BA5F5E201F00BE0F490CD4D2 /* RoutePicker.swift */,
+				93B32A6347F39FB82B39548A /* Theme.swift */,
+			);
+			path = BirdsEye;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		BE00000000000000000000E1 /* BirdsEye */ = {
+		874E0CBE626862276AF94724 /* BirdsEyeUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BE00000000000000000000F3 /* Build configuration list for PBXNativeTarget "BirdsEye" */;
+			buildConfigurationList = DEAF3F475E2F7D22F21701B2 /* Build configuration list for PBXNativeTarget "BirdsEyeUITests" */;
 			buildPhases = (
-				BE00000000000000000000C2 /* Sources */,
-				BE00000000000000000000C1 /* Frameworks */,
-				BE00000000000000000000C3 /* Resources */,
+				6AD420B3E2082AF7B730BA64 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0FC95B19249C4830487C38A4 /* PBXTargetDependency */,
+			);
+			name = BirdsEyeUITests;
+			packageProductDependencies = (
+			);
+			productName = BirdsEyeUITests;
+			productReference = 78B3814EFA6E451802147F0C /* BirdsEyeUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		C745ED56E8884F56E2A303B2 /* BirdsEye */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7D0D9D5C6FF77F29F382ADB8 /* Build configuration list for PBXNativeTarget "BirdsEye" */;
+			buildPhases = (
+				E13C45E8BE65827F3E878FDF /* Sources */,
+				6BF81E2BA09FEC4CA97C46F7 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			fileSystemSynchronizedGroups = (
-				BE00000000000000000000B1 /* BirdsEye */,
-			);
 			name = BirdsEye;
 			packageProductDependencies = (
 			);
 			productName = BirdsEye;
-			productReference = BE00000000000000000000A1 /* BirdsEye.app */;
+			productReference = 561152C9E9E0A51531B8BA27 /* BirdsEye.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		BE00000000000000000000F1 /* Project object */ = {
+		D1C2901961ED24D7B906ACDB /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1600;
-				LastUpgradeCheck = 1600;
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
 				TargetAttributes = {
-					BE00000000000000000000E1 = {
-						CreatedOnToolsVersion = 16.0;
+					874E0CBE626862276AF94724 = {
+						TestTargetID = C745ED56E8884F56E2A303B2;
 					};
 				};
 			};
-			buildConfigurationList = BE00000000000000000000F2 /* Build configuration list for PBXProject "BirdsEye" */;
+			buildConfigurationList = 22F8BD2C5769B56E6EF9DE3F /* Build configuration list for PBXProject "BirdsEye" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
+				en,
 			);
-			mainGroup = BE00000000000000000000D1;
+			mainGroup = 57E66846949A1EDE8E06F917;
 			minimizedProjectReferenceProxies = 1;
 			preferredProjectObjectVersion = 77;
-			productRefGroup = BE00000000000000000000D2 /* Products */;
+			productRefGroup = B7A62F0C5AD682F027D15C97 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				BE00000000000000000000E1 /* BirdsEye */,
+				C745ED56E8884F56E2A303B2 /* BirdsEye */,
+				874E0CBE626862276AF94724 /* BirdsEyeUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		BE00000000000000000000C3 /* Resources */ = {
+		6BF81E2BA09FEC4CA97C46F7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3AE7F32003075205EDD07B15 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		BE00000000000000000000C2 /* Sources */ = {
+		6AD420B3E2082AF7B730BA64 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E38E4D4A5C3440947913B328 /* OnboardingFlowTests.swift in Sources */,
+				50737B040F1ABCFA3DC853C1 /* ScreenshotCapture.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E13C45E8BE65827F3E878FDF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DC6C996B360766326104A509 /* BirdsEyeApp.swift in Sources */,
+				93D60E8A83E58C9E2B16415C /* DialView.swift in Sources */,
+				414640BE32B3E95961B120BD /* FlightEngine.swift in Sources */,
+				A6646F0B0FF215712B3499B8 /* FlightLookup.swift in Sources */,
+				259B8EA4EBC7E0934ED3D93F /* Geo.swift in Sources */,
+				3E1CBBB108FCAF54D03863CC /* HUDView.swift in Sources */,
+				81CB8F00BBB27F2C69D88383 /* LandmarkDB.swift in Sources */,
+				A4137EC454E2FF2860151FF9 /* LocationService.swift in Sources */,
+				0046D02AD349D98340A3665F /* Models.swift in Sources */,
+				D8A6F3953F37F250BE27FF13 /* OnboardingView.swift in Sources */,
+				F6BFA8EB134E9C95E78107CD /* RoutePicker.swift in Sources */,
+				04CA66E2C7B1EED7354C0103 /* Theme.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		0FC95B19249C4830487C38A4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C745ED56E8884F56E2A303B2 /* BirdsEye */;
+			targetProxy = 32DAC26CA59E949EC86F4571 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
-		BE0000000000000000000101 /* Debug */ = {
+		0B7D00A39B73F4E1FA7FF4DD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu17;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Birds Eye uses your location and heading to show which landmarks are around you.";
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
+					"@executable_path/Frameworks",
 				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
-				ONLY_ACTIVE_ARCH = YES;
+				MARKETING_VERSION = 0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.birdseye.prototype;
 				SDKROOT = iphoneos;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		88B620B3E65DCE6C8BBBF578 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.birdseye.prototype.uitests;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = BirdsEye;
+			};
+			name = Release;
+		};
+		9CC65DCD3BD0A7D16EF5A6EC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Birds Eye uses your location and heading to show which landmarks are around you.";
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.birdseye.prototype;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		BE0000000000000000000102 /* Release */ = {
+		EDD894E25F1348CCB3EE4947 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -225,8 +325,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -235,97 +334,128 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
-				VALIDATE_PRODUCT = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
-		BE0000000000000000000103 /* Debug */ = {
+		F99B8539CA6B792E9CAF335D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
-				ENABLE_PREVIEWS = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Birds Eye uses your location and heading to show which landmarks are around you.";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.birdseye.prototype;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.birdseye.prototype.uitests;
+				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = BirdsEye;
 			};
 			name = Debug;
 		};
-		BE0000000000000000000104 /* Release */ = {
+		FF782B5285A3FC5D9C691BFD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Birds Eye uses your location and heading to show which landmarks are around you.";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				LD_RUNPATH_SEARCH_PATHS = (
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
-					"@executable_path/Frameworks",
+					"DEBUG=1",
 				);
-				MARKETING_VERSION = 0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.birdseye.prototype;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
 			};
-			name = Release;
+			name = Debug;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		BE00000000000000000000F2 /* Build configuration list for PBXProject "BirdsEye" */ = {
+		22F8BD2C5769B56E6EF9DE3F /* Build configuration list for PBXProject "BirdsEye" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				BE0000000000000000000101 /* Debug */,
-				BE0000000000000000000102 /* Release */,
+				FF782B5285A3FC5D9C691BFD /* Debug */,
+				EDD894E25F1348CCB3EE4947 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
-		BE00000000000000000000F3 /* Build configuration list for PBXNativeTarget "BirdsEye" */ = {
+		7D0D9D5C6FF77F29F382ADB8 /* Build configuration list for PBXNativeTarget "BirdsEye" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				BE0000000000000000000103 /* Debug */,
-				BE0000000000000000000104 /* Release */,
+				9CC65DCD3BD0A7D16EF5A6EC /* Debug */,
+				0B7D00A39B73F4E1FA7FF4DD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
+		};
+		DEAF3F475E2F7D22F21701B2 /* Build configuration list for PBXNativeTarget "BirdsEyeUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F99B8539CA6B792E9CAF335D /* Debug */,
+				88B620B3E65DCE6C8BBBF578 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = BE00000000000000000000F1 /* Project object */;
+	rootObject = D1C2901961ED24D7B906ACDB /* Project object */;
 }

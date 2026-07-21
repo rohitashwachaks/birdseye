@@ -1,6 +1,6 @@
-# Fallback: regenerate the Xcode project with `xcodegen` (brew install xcodegen)
-# if project.pbxproj ever gets mangled. Normally you never need this — just open
-# BirdsEye.xcodeproj directly.
+# Source of truth for the Xcode project. Regenerate after changing targets with:
+#   brew install xcodegen && xcodegen generate
+# (Day to day you never need this — just open BirdsEye.xcodeproj.)
 name: BirdsEye
 options:
   bundleIdPrefix: com.birdseye
@@ -16,8 +16,35 @@ targets:
         GENERATE_INFOPLIST_FILE: YES
         INFOPLIST_KEY_NSLocationWhenInUseUsageDescription: "Birds Eye uses your location and heading to show which landmarks are around you."
         INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone: "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight"
         PRODUCT_BUNDLE_IDENTIFIER: com.birdseye.prototype
         MARKETING_VERSION: "0.1"
         CURRENT_PROJECT_VERSION: 1
         SWIFT_VERSION: "5.0"
         TARGETED_DEVICE_FAMILY: "1,2"
+
+  BirdsEyeUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources: [BirdsEyeUITests]
+    dependencies:
+      - target: BirdsEye
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        PRODUCT_BUNDLE_IDENTIFIER: com.birdseye.prototype.uitests
+        SWIFT_VERSION: "5.0"
+        TARGETED_DEVICE_FAMILY: "1,2"
+
+schemes:
+  BirdsEye:
+    build:
+      targets:
+        BirdsEye: all
+        BirdsEyeUITests: [test]
+    run:
+      config: Debug
+    test:
+      config: Debug
+      targets:
+        - BirdsEyeUITests

@@ -5,6 +5,12 @@ import Foundation
 /// Airlines file flight plans under ICAO callsigns ("UAL123"), while passengers
 /// know IATA flight numbers ("UA123") — we try the input as typed, then retry
 /// with the IATA→ICAO airline prefix swapped in.
+///
+/// IMPORTANT: this database stores ONE historical city pair per callsign, not a
+/// dated schedule. Airlines recycle flight numbers across routes and seasons, so
+/// a hit can be confidently wrong (e.g. AA296 returns PHX→DFW while today it flies
+/// OGG→DFW). Treat every result as a *guess* the user must be able to override —
+/// see FlightReadyStep's "Not your route? Fix it".
 enum FlightLookup {
 
     enum LookupError: LocalizedError {
@@ -14,9 +20,9 @@ enum FlightLookup {
         var errorDescription: String? {
             switch self {
             case .notFound:
-                return "Couldn't find that flight. Try the ICAO form (e.g. UAL123 for UA123), or pick the route manually below."
+                return "No route on file for that flight number. Enter your route directly below."
             case .network(let msg):
-                return "Network problem: \(msg). You can pick the route manually below."
+                return "Network problem: \(msg). Enter your route directly below."
             }
         }
     }

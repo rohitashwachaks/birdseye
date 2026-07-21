@@ -26,9 +26,9 @@ struct OnboardingView: View {
             case .flightReady(let route):
                 FlightReadyStep(
                     route: route,
-                    onStart: { side in
+                    onStart: { finalRoute, side in
                         engine.seatSide = side
-                        engine.begin(mode: .flight(route))
+                        engine.begin(mode: .flight(finalRoute))
                     },
                     onBack: { withAnimation(.easeInOut) { stage = .chooseMode } }
                 )
@@ -93,6 +93,7 @@ private struct WelcomeStep: View {
                     .foregroundStyle(Theme.cyan)
             }
             .buttonStyle(.plain)
+            .accessibilityIdentifier("getStartedButton")
             .padding(.horizontal, 28)
             .padding(.bottom, 30)
         }
@@ -109,8 +110,8 @@ private struct ChooseModeStep: View {
     @State private var isLooking = false
     @State private var errorText: String?
     @State private var showManual = false
-    @State private var manualFrom = "SFO"
-    @State private var manualTo = "JFK"
+    @State private var manualFrom = airport(forIATA: "SFO")!
+    @State private var manualTo = airport(forIATA: "JFK")!
 
     var body: some View {
         ScrollView {
@@ -126,11 +127,12 @@ private struct ChooseModeStep: View {
                     Label("I'm flying", systemImage: "airplane.departure")
                         .font(.system(size: 17, weight: .semibold))
                         .foregroundStyle(Theme.text)
-                    Text("Enter your flight number — we'll download the route so Birds Eye works with no signal at 36,000 ft.")
+                    Text("Enter your flight number for a head start — we'll cache the route so Birds Eye works with no signal at 36,000 ft. You'll get to confirm it before takeoff.")
                         .font(.system(size: 13))
                         .foregroundStyle(Theme.dim)
                     HStack(spacing: 10) {
                         TextField("UA 123", text: $flightNumber)
+                            .accessibilityIdentifier("flightNumberField")
                             .flightCodeFieldStyle()
                             .font(.system(size: 20, weight: .semibold, design: .monospaced))
                             .textFieldStyle(.plain)
@@ -151,6 +153,7 @@ private struct ChooseModeStep: View {
                             .foregroundStyle(Theme.bg)
                         }
                         .buttonStyle(.plain)
+                        .accessibilityIdentifier("lookupButton")
                         .disabled(flightNumber.trimmingCharacters(in: .whitespaces).isEmpty || isLooking)
                     }
                     if let errorText {
@@ -158,8 +161,35 @@ private struct ChooseModeStep: View {
                             .font(.system(size: 12))
                             .foregroundStyle(Theme.amber)
                     }
+                }
+                .panelCard()
+
+                // Manual entry is always available — the free route DB is per-callsign
+                // and frequently returns a stale city pair for a recycled flight number.
+                VStack(alignment: .leading, spacing: 12) {
+                    Button {
+                        withAnimation(.easeInOut(duration: 0.2)) { showManual.toggle() }
+                    } label: {
+                        HStack {
+                            Label("Know your route? Enter it directly",
+                                  systemImage: "map")
+                                .font(.system(size: 14, weight: .medium))
+                                .foregroundStyle(Theme.text)
+                            Spacer()
+                            Image(systemName: showManual ? "chevron.up" : "chevron.down")
+                                .font(.system(size: 12))
+                                .foregroundStyle(Theme.dim)
+                        }
+                        .contentShape(Rectangle())
+                    }
+                    .buttonStyle(.plain)
+                    .accessibilityIdentifier("manualEntryToggle")
+
                     if showManual {
-                        manualRoutePicker
+                        Text("Most reliable — airlines reuse flight numbers across different city pairs.")
+                            .font(.system(size: 12))
+                            .foregroundStyle(Theme.dim)
+                        RoutePickerCard(from: $manualFrom, to: $manualTo, onConfirm: onFlightFound)
                     }
                 }
                 .panelCard()
@@ -187,46 +217,6 @@ private struct ChooseModeStep: View {
         .background(Theme.bg)
     }
 
-    private var manualRoutePicker: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            Divider().overlay(Theme.line)
-            Text("PICK THE ROUTE MANUALLY")
-                .font(.system(size: 10, weight: .bold, design: .monospaced))
-                .tracking(2)
-                .foregroundStyle(Theme.dim)
-            HStack(spacing: 12) {
-                Picker("From", selection: $manualFrom) {
-                    ForEach(airportDB) { apt in
-                        Text("\(apt.iata) · \(apt.name)").tag(apt.iata)
-                    }
-                }
-                Image(systemName: "arrow.right").foregroundStyle(Theme.dim)
-                Picker("To", selection: $manualTo) {
-                    ForEach(airportDB) { apt in
-                        Text("\(apt.iata) · \(apt.name)").tag(apt.iata)
-                    }
-                }
-            }
-            .tint(Theme.cyan)
-            Button {
-                guard let from = airportDB.first(where: { $0.iata == manualFrom }),
-                      let to = airportDB.first(where: { $0.iata == manualTo }),
-                      from.iata != to.iata else { return }
-                onFlightFound(FlightRoute(label: "\(from.iata) → \(to.iata)", from: from.routeEnd, to: to.routeEnd))
-            } label: {
-                Text("USE THIS ROUTE")
-                    .font(.system(size: 12, weight: .bold, design: .monospaced))
-                    .tracking(1.5)
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 12)
-                    .background(Theme.panel2, in: RoundedRectangle(cornerRadius: 10))
-                    .overlay(RoundedRectangle(cornerRadius: 10).stroke(Theme.cyan.opacity(0.4), lineWidth: 1))
-                    .foregroundStyle(Theme.cyan)
-            }
-            .buttonStyle(.plain)
-        }
-    }
-
     private func lookup() {
         errorText = nil
         isLooking = true
@@ -248,88 +238,141 @@ private struct ChooseModeStep: View {
 
 private struct FlightReadyStep: View {
     let route: FlightRoute
-    let onStart: (SeatSide) -> Void
+    let onStart: (FlightRoute, SeatSide) -> Void
     let onBack: () -> Void
 
     @State private var side: SeatSide = .left
+    @State private var corrected: FlightRoute?
+    @State private var isEditing = false
+    @State private var editFrom: Airport
+    @State private var editTo: Airport
+
+    init(route: FlightRoute, onStart: @escaping (FlightRoute, SeatSide) -> Void, onBack: @escaping () -> Void) {
+        self.route = route
+        self.onStart = onStart
+        self.onBack = onBack
+        // Seed the corrector with the looked-up pair when we recognise the codes.
+        _editFrom = State(initialValue: airport(forIATA: route.from.code) ?? airportDB[0])
+        _editTo = State(initialValue: airport(forIATA: route.to.code) ?? airportDB[1])
+    }
+
+    /// The route actually in play — user correction wins over the lookup.
+    private var active: FlightRoute { corrected ?? route }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 20) {
-            Button(action: onBack) {
-                Label("Back", systemImage: "chevron.left")
-                    .font(.system(size: 13, design: .monospaced))
-                    .foregroundStyle(Theme.dim)
-            }
-            .buttonStyle(.plain)
-            .padding(.top, 18)
+        ScrollView {
+            VStack(alignment: .leading, spacing: 20) {
+                Button(action: onBack) {
+                    Label("Back", systemImage: "chevron.left")
+                        .font(.system(size: 13, design: .monospaced))
+                        .foregroundStyle(Theme.dim)
+                }
+                .buttonStyle(.plain)
+                .padding(.top, 18)
 
-            Text("ROUTE LOADED")
-                .font(.system(size: 13, weight: .bold, design: .monospaced))
-                .tracking(3)
-                .foregroundStyle(Theme.green)
+                Text(corrected == nil ? "ROUTE LOADED" : "ROUTE CORRECTED")
+                    .font(.system(size: 13, weight: .bold, design: .monospaced))
+                    .tracking(3)
+                    .foregroundStyle(Theme.green)
 
-            VStack(alignment: .leading, spacing: 14) {
-                HStack(alignment: .firstTextBaseline) {
-                    VStack(alignment: .leading) {
-                        Text(route.from.code).font(.system(size: 30, weight: .bold, design: .monospaced))
-                        Text(route.from.city).font(.system(size: 12)).foregroundStyle(Theme.dim)
+                VStack(alignment: .leading, spacing: 14) {
+                    HStack(alignment: .firstTextBaseline) {
+                        VStack(alignment: .leading) {
+                            Text(active.from.code).font(.system(size: 30, weight: .bold, design: .monospaced))
+                            Text(active.from.city).font(.system(size: 12)).foregroundStyle(Theme.dim)
+                        }
+                        Spacer()
+                        Image(systemName: "airplane")
+                            .foregroundStyle(Theme.cyan)
+                        Spacer()
+                        VStack(alignment: .trailing) {
+                            Text(active.to.code).font(.system(size: 30, weight: .bold, design: .monospaced))
+                            Text(active.to.city).font(.system(size: 12)).foregroundStyle(Theme.dim)
+                        }
                     }
-                    Spacer()
-                    Image(systemName: "airplane")
+                    Divider().overlay(Theme.line)
+                    HStack {
+                        stat("FLIGHT", active.label)
+                        Spacer()
+                        stat("DISTANCE", "\(Int(active.totalKm.rounded())) km")
+                        Spacer()
+                        stat("CRUISE TIME", String(format: "≈%.1f h", active.cruiseHours))
+                    }
+
+                    if corrected == nil {
+                        Label(
+                            "Flight numbers get reused across city pairs — double-check this is today's route.",
+                            systemImage: "exclamationmark.triangle"
+                        )
+                        .font(.system(size: 11.5))
+                        .foregroundStyle(Theme.amber)
+                    }
+
+                    Button {
+                        withAnimation(.easeInOut(duration: 0.2)) { isEditing.toggle() }
+                    } label: {
+                        HStack {
+                            Text(isEditing ? "Cancel" : "Not your route? Fix it")
+                                .font(.system(size: 13, weight: .semibold))
+                            Spacer()
+                            Image(systemName: isEditing ? "chevron.up" : "pencil")
+                                .font(.system(size: 12))
+                        }
                         .foregroundStyle(Theme.cyan)
-                    Spacer()
-                    VStack(alignment: .trailing) {
-                        Text(route.to.code).font(.system(size: 30, weight: .bold, design: .monospaced))
-                        Text(route.to.city).font(.system(size: 12)).foregroundStyle(Theme.dim)
+                        .contentShape(Rectangle())
                     }
-                }
-                Divider().overlay(Theme.line)
-                HStack {
-                    stat("FLIGHT", route.label)
-                    Spacer()
-                    stat("DISTANCE", "\(Int(route.totalKm.rounded())) km")
-                    Spacer()
-                    stat("CRUISE TIME", String(format: "≈%.1f h", route.cruiseHours))
-                }
-                Text("Route is cached — everything from here works offline. GPS at the window improves accuracy when it can.")
-                    .font(.system(size: 12))
-                    .foregroundStyle(Theme.dim)
-            }
-            .panelCard()
+                    .buttonStyle(.plain)
+                    .accessibilityIdentifier("fixRouteButton")
 
-            VStack(alignment: .leading, spacing: 10) {
-                Text("WHICH WINDOW ARE YOU AT?")
-                    .font(.system(size: 11, weight: .bold, design: .monospaced))
-                    .tracking(2)
-                    .foregroundStyle(Theme.dim)
-                Picker("Seat side", selection: $side) {
-                    ForEach(SeatSide.allCases) { s in
-                        Text(s.rawValue).tag(s)
+                    if isEditing {
+                        RoutePickerCard(
+                            from: $editFrom, to: $editTo,
+                            confirmTitle: "USE THIS ROUTE INSTEAD"
+                        ) { newRoute in
+                            corrected = newRoute
+                            withAnimation(.easeInOut(duration: 0.2)) { isEditing = false }
+                        }
                     }
+
+                    Text("Route is cached — everything from here works offline. GPS at the window improves accuracy when it can.")
+                        .font(.system(size: 12))
+                        .foregroundStyle(Theme.dim)
                 }
-                .pickerStyle(.segmented)
-                Text("We'll highlight what's visible from your side of the plane.")
-                    .font(.system(size: 12))
-                    .foregroundStyle(Theme.dim)
-            }
-            .panelCard()
+                .panelCard()
 
-            Spacer()
+                VStack(alignment: .leading, spacing: 10) {
+                    Text("WHICH WINDOW ARE YOU AT?")
+                        .font(.system(size: 11, weight: .bold, design: .monospaced))
+                        .tracking(2)
+                        .foregroundStyle(Theme.dim)
+                    Picker("Seat side", selection: $side) {
+                        ForEach(SeatSide.allCases) { s in
+                            Text(s.rawValue).tag(s)
+                        }
+                    }
+                    .pickerStyle(.segmented)
+                    Text("We'll highlight what's visible from your side of the plane.")
+                        .font(.system(size: 12))
+                        .foregroundStyle(Theme.dim)
+                }
+                .panelCard()
 
-            Button { onStart(side) } label: {
-                Text("START · TO THE GATE ✈")
-                    .font(.system(size: 15, weight: .bold, design: .monospaced))
-                    .tracking(2)
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 16)
-                    .background(Theme.cyan.opacity(0.15), in: RoundedRectangle(cornerRadius: 14))
-                    .overlay(RoundedRectangle(cornerRadius: 14).stroke(Theme.cyan.opacity(0.5), lineWidth: 1))
-                    .foregroundStyle(Theme.cyan)
+                Button { onStart(active, side) } label: {
+                    Text("START · TO THE GATE ✈")
+                        .font(.system(size: 15, weight: .bold, design: .monospaced))
+                        .tracking(2)
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 16)
+                        .background(Theme.cyan.opacity(0.15), in: RoundedRectangle(cornerRadius: 14))
+                        .overlay(RoundedRectangle(cornerRadius: 14).stroke(Theme.cyan.opacity(0.5), lineWidth: 1))
+                        .foregroundStyle(Theme.cyan)
+                }
+                .buttonStyle(.plain)
+                .accessibilityIdentifier("startFlightButton")
+                .padding(.bottom, 26)
             }
-            .buttonStyle(.plain)
-            .padding(.bottom, 26)
+            .padding(.horizontal, 22)
         }
-        .padding(.horizontal, 22)
         .background(Theme.bg)
     }
 

@@ -33,8 +33,9 @@ plotted by relative bearing and distance so you know exactly where to look out t
 | File | Role |
 |---|---|
 | `Geo.swift` | spherical geodesy: haversine, bearings, great-circle slerp, horizon math |
-| `Models.swift` | `FlightRoute` (position/track/altitude at progress), seat sides, offline airport list |
-| `FlightLookup.swift` | flight number → route via api.adsbdb.com, IATA→ICAO retry, manual fallback |
+| `Models.swift` | `FlightRoute` (position/track/altitude at progress), seat sides, ~150-airport offline list |
+| `FlightLookup.swift` | flight number → route via api.adsbdb.com, IATA→ICAO retry |
+| `RoutePicker.swift` | searchable airport fields + route confirm card (manual entry & correction) |
 | `LocationService.swift` | CoreLocation wrapper (fix + compass heading) |
 | `FlightEngine.swift` | 1 Hz state machine: dead reckoning ⊕ GPS fusion, visibility computation |
 | `LandmarkDB.swift` | generated from `app/landmarks.js` — 200 curated landmarks |
@@ -44,3 +45,34 @@ plotted by relative bearing and distance so you know exactly where to look out t
 
 Sources are platform-guarded so `swiftc -typecheck` passes on macOS too — CI-checkable
 without an iOS SDK. Next up (per docs/SPEC.md): AR mode, route corridor packs, notifications.
+
+## A warning about flight-number lookup
+
+`api.adsbdb.com` is free and needs no key, but it stores **one historical city pair per
+callsign — not a dated schedule**. Airlines recycle flight numbers across routes and
+seasons, so a lookup can be confidently wrong: `AA296` returns PHX → DFW while the flight
+today is OGG → DFW. Treat it as a *guess*.
+
+Because of that, the UI never traps you in a bad route:
+- manual route entry is always available on the "where are we headed?" screen,
+- the briefing screen warns about reuse and offers **"Not your route? Fix it"**,
+- the corrected route — not the API's guess — is what the HUD flies.
+
+Upgrading to real schedule data (FlightAware AeroAPI or similar, both paid) is the only
+way to make the lookup trustworthy; see the open questions in `docs/SPEC.md`.
+
+## Tests
+
+```sh
+cd ios/BirdsEye
+xcodebuild -project BirdsEye.xcodeproj -scheme BirdsEye \
+  -destination 'platform=iOS Simulator,name=iPhone 17' test
+```
+
+`BirdsEyeUITests` drives the real onboarding flow: it pins the route-correction path
+(including the exact AA296 → OGG case above) and captures screenshots of each step to
+`/tmp/birdseye-shots/`. The network-dependent test *skips* rather than fails when the
+third-party API is unreachable.
+
+The Xcode project is generated from `project.yml` — after adding or removing source
+files, run `xcodegen generate` (`brew install xcodegen`) so the targets pick them up.
