@@ -2,7 +2,7 @@ import SwiftUI
 
 @main
 struct BirdsEyeApp: App {
-    @StateObject private var engine = FlightEngine()
+    @StateObject private var engine = BirdsEyeEngine()
 
     var body: some Scene {
         WindowGroup {
@@ -14,13 +14,13 @@ struct BirdsEyeApp: App {
 }
 
 struct ContentView: View {
-    @EnvironmentObject var engine: FlightEngine
+    @EnvironmentObject var engine: BirdsEyeEngine
 
     var body: some View {
-        if engine.mode == nil {
-            OnboardingView()
-        } else {
+        if engine.isRunning {
             HUDView()
+        } else {
+            OnboardingView()
         }
     }
 }

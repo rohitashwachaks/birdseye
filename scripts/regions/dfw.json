@@ -1,0 +1,344 @@
+{
+  "region": "dfw",
+  "title": "Dallas–Fort Worth Metroplex",
+  "bbox": [
+    32.55,
+    -97.55,
+    33.1,
+    -96.55
+  ],
+  "_comment": "Curation layer. Raw OSM is too noisy to ship: man_made=tower is mostly radio masts, leisure=stadium without a wikidata tag is high-school fields, and name matching drags in sub-features ('White Rock Lake Dog Park'). Heights are barely tagged in OSM, so categoryHeights supplies defaults and heightOverrides fixes the ones that matter.",
+  "blockPatterns": [
+    "(?i)\\bparking\\b",
+    "(?i)\\bdog park\\b",
+    "(?i)\\btrail\\b",
+    "(?i)\\btrailhead\\b",
+    "(?i)^live from ",
+    "(?i)\\bcircle$",
+    "(?i)\\bseventh day\\b",
+    "(?i)\\bchurch\\b",
+    "(?i)\\bcemetery\\b",
+    "(?i)\\bcommon +birds\\b",
+    "(?i)\\bplayground\\b",
+    "(?i)\\brestroom",
+    "(?i)\\bpavilion\\b",
+    "(?i)\\bsoccer\\b",
+    "(?i)\\bbaseball\\b",
+    "(?i)\\btennis\\b",
+    "(?i)\\bfield house\\b",
+    "(?i)\\belementary\\b",
+    "(?i)\\bmiddle school\\b",
+    "(?i)\\bhigh school\\b",
+    "(?i)\\bisd\\b",
+    "(?i)\\bapartments?\\b",
+    "(?i)\\bstorage\\b",
+    "(?i)^cotton bowl plaza$"
+  ],
+  "categoryHeights": {
+    "tower": 150,
+    "icon": 90,
+    "stadium": 55,
+    "museum": 20,
+    "campus": 25,
+    "airport": 15,
+    "city": 60,
+    "town": 20,
+    "park": 0,
+    "water": 0,
+    "wonder": 30
+  },
+  "heightOverrides": {
+    "Reunion Tower": 171,
+    "Bank of America Plaza": 281,
+    "Renaissance Tower": 270,
+    "JPMorgan Chase Tower": 225,
+    "Comerica Bank Tower": 240,
+    "Fountain Place": 216,
+    "Burnett Plaza": 174,
+    "AT&T Stadium": 90,
+    "Globe Life Field": 60,
+    "American Airlines Center": 45,
+    "Cotton Bowl Stadium": 40,
+    "Texas Star": 65,
+    "Omni Dallas Hotel": 152,
+    "Margaret Hunt Hill Bridge": 122,
+    "Dallas": 60,
+    "Fort Worth": 50
+  },
+  "tierOverrides": {
+    "Reunion Tower": 1,
+    "AT&T Stadium": 1,
+    "Dealey Plaza": 1,
+    "The Sixth Floor Museum at Dealey Plaza": 1,
+    "Fort Worth Stockyards National Historic District": 1,
+    "Perot Museum of Nature and Science": 1,
+    "Globe Life Field": 1,
+    "American Airlines Center": 1,
+    "Six Flags Over Texas": 1,
+    "Klyde Warren Park": 1,
+    "White Rock Lake": 1,
+    "Dallas": 1,
+    "Fort Worth": 1,
+    "Bank of America Plaza": 2,
+    "Cotton Bowl Stadium": 2,
+    "Kimbell Art Museum": 2,
+    "Dallas Museum of Art": 2,
+    "Fair Park": 2
+  },
+  "_extraComment": "Hand-added because OSM either lacks them or tags them unusably. Reunion Tower notably did not come back from any Overpass query during testing.",
+  "extra": [
+    {
+      "name": "Reunion Tower",
+      "type": "tower",
+      "tier": 1,
+      "lat": 32.7755,
+      "lon": -96.8089,
+      "heightM": 171,
+      "elevM": 130
+    },
+    {
+      "name": "Margaret Hunt Hill Bridge",
+      "type": "icon",
+      "tier": 2,
+      "lat": 32.7818,
+      "lon": -96.8236,
+      "heightM": 122,
+      "elevM": 128
+    },
+    {
+      "name": "Six Flags Over Texas",
+      "type": "wonder",
+      "tier": 1,
+      "lat": 32.7551,
+      "lon": -97.0705,
+      "heightM": 60,
+      "elevM": 165
+    },
+    {
+      "name": "Globe Life Field",
+      "type": "stadium",
+      "tier": 1,
+      "lat": 32.7473,
+      "lon": -97.0845,
+      "heightM": 60,
+      "elevM": 160
+    },
+    {
+      "name": "DFW International Airport",
+      "type": "airport",
+      "tier": 1,
+      "lat": 32.8998,
+      "lon": -97.0403,
+      "heightM": 20,
+      "elevM": 185
+    },
+    {
+      "name": "Dallas Love Field",
+      "type": "airport",
+      "tier": 2,
+      "lat": 32.8471,
+      "lon": -96.8518,
+      "heightM": 15,
+      "elevM": 148
+    },
+    {
+      "name": "Downtown Dallas skyline",
+      "type": "city",
+      "tier": 1,
+      "lat": 32.7791,
+      "lon": -96.8008,
+      "heightM": 200,
+      "elevM": 130
+    },
+    {
+      "name": "Downtown Fort Worth skyline",
+      "type": "city",
+      "tier": 1,
+      "lat": 32.7513,
+      "lon": -97.33,
+      "heightM": 160,
+      "elevM": 200
+    },
+    {
+      "name": "Trinity River",
+      "type": "water",
+      "tier": 3,
+      "lat": 32.758,
+      "lon": -96.83,
+      "heightM": 0,
+      "elevM": 120
+    },
+    {
+      "name": "Grapevine Lake",
+      "type": "water",
+      "tier": 2,
+      "lat": 32.977,
+      "lon": -97.06,
+      "heightM": 0,
+      "elevM": 170
+    },
+    {
+      "name": "Lake Lewisville",
+      "type": "water",
+      "tier": 2,
+      "lat": 33.07,
+      "lon": -96.98,
+      "heightM": 0,
+      "elevM": 160
+    },
+    {
+      "name": "Joe Pool Lake",
+      "type": "water",
+      "tier": 3,
+      "lat": 32.63,
+      "lon": -97.01,
+      "heightM": 0,
+      "elevM": 160
+    },
+    {
+      "name": "Eagle Mountain Lake",
+      "type": "water",
+      "tier": 3,
+      "lat": 32.88,
+      "lon": -97.47,
+      "heightM": 0,
+      "elevM": 200
+    },
+    {
+      "name": "Southfork Ranch",
+      "type": "icon",
+      "tier": 2,
+      "lat": 33.0176,
+      "lon": -96.627,
+      "heightM": 12,
+      "elevM": 190
+    },
+    {
+      "name": "Texas Motor Speedway",
+      "type": "stadium",
+      "tier": 2,
+      "lat": 33.0372,
+      "lon": -97.282,
+      "heightM": 40,
+      "elevM": 200
+    },
+    {
+      "name": "The Star (Frisco)",
+      "type": "stadium",
+      "tier": 3,
+      "lat": 33.0932,
+      "lon": -96.8352,
+      "heightM": 30,
+      "elevM": 200
+    },
+    {
+      "name": "Arlington",
+      "type": "town",
+      "tier": 2,
+      "lat": 32.7357,
+      "lon": -97.1081,
+      "heightM": 30,
+      "elevM": 184
+    },
+    {
+      "name": "Plano",
+      "type": "town",
+      "tier": 2,
+      "lat": 33.0198,
+      "lon": -96.6989,
+      "heightM": 30,
+      "elevM": 200
+    },
+    {
+      "name": "Irving / Las Colinas",
+      "type": "town",
+      "tier": 2,
+      "lat": 32.8746,
+      "lon": -96.96,
+      "heightM": 60,
+      "elevM": 155
+    },
+    {
+      "name": "Frisco",
+      "type": "town",
+      "tier": 2,
+      "lat": 33.1507,
+      "lon": -96.8236,
+      "heightM": 25,
+      "elevM": 210
+    },
+    {
+      "name": "Denton",
+      "type": "town",
+      "tier": 2,
+      "lat": 33.2148,
+      "lon": -97.1331,
+      "heightM": 25,
+      "elevM": 200
+    },
+    {
+      "name": "Garland",
+      "type": "town",
+      "tier": 3,
+      "lat": 32.9126,
+      "lon": -96.6389,
+      "heightM": 20,
+      "elevM": 170
+    },
+    {
+      "name": "Mesquite",
+      "type": "town",
+      "tier": 3,
+      "lat": 32.7668,
+      "lon": -96.5992,
+      "heightM": 20,
+      "elevM": 150
+    },
+    {
+      "name": "Grapevine",
+      "type": "town",
+      "tier": 3,
+      "lat": 32.9343,
+      "lon": -97.0781,
+      "heightM": 20,
+      "elevM": 180
+    },
+    {
+      "name": "Richardson",
+      "type": "town",
+      "tier": 3,
+      "lat": 32.9483,
+      "lon": -96.7299,
+      "heightM": 20,
+      "elevM": 190
+    },
+    {
+      "name": "McKinney",
+      "type": "town",
+      "tier": 3,
+      "lat": 33.1972,
+      "lon": -96.6398,
+      "heightM": 20,
+      "elevM": 200
+    },
+    {
+      "name": "Deep Ellum",
+      "type": "icon",
+      "tier": 3,
+      "lat": 32.7846,
+      "lon": -96.7838,
+      "heightM": 12,
+      "elevM": 130
+    },
+    {
+      "name": "Bishop Arts District",
+      "type": "icon",
+      "tier": 3,
+      "lat": 32.7486,
+      "lon": -96.828,
+      "heightM": 10,
+      "elevM": 135
+    }
+  ],
+  "maxPlausibleHeightM": 300
+}

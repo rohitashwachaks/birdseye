@@ -14,30 +14,23 @@ enum Theme {
 
     static func color(for type: LandmarkType) -> Color {
         switch type {
-        case .city: return cyan
+        case .city, .town: return cyan
         case .peak: return Color(red: 0.85, green: 0.75, blue: 0.95)
         case .park: return green
         case .water: return Color(red: 0.45, green: 0.65, blue: 0.95)
         case .icon: return amber
         case .wonder: return Color(red: 1.0, green: 0.85, blue: 0.55)
         case .border: return Color(red: 0.95, green: 0.55, blue: 0.55)
+        case .museum: return Color(red: 0.80, green: 0.72, blue: 0.98)
+        case .stadium: return Color(red: 0.55, green: 0.90, blue: 0.80)
+        case .tower: return amber
+        case .airport: return Color(red: 0.65, green: 0.78, blue: 0.95)
+        case .campus: return Color(red: 0.90, green: 0.80, blue: 0.60)
         }
     }
 }
 
 extension View {
-    /// iOS text-field affordances, no-ops elsewhere (keeps macOS typecheck happy).
-    @ViewBuilder func flightCodeFieldStyle() -> some View {
-        #if os(iOS)
-        self
-            .textInputAutocapitalization(.characters)
-            .autocorrectionDisabled()
-            .keyboardType(.asciiCapable)
-        #else
-        self.autocorrectionDisabled()
-        #endif
-    }
-
     func panelCard() -> some View {
         self
             .padding(14)
